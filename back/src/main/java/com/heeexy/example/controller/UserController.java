@@ -1,5 +1,6 @@
 package com.heeexy.example.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.heeexy.example.service.UserService;
 import com.heeexy.example.util.CommonUtil;
@@ -9,6 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * @author: hxy
@@ -31,6 +36,15 @@ public class UserController {
     @GetMapping("/list")
     public JSONObject listUser(HttpServletRequest request) {
         return userService.listUser(CommonUtil.request2Json(request));
+    }
+
+    @GetMapping("/hello")
+    public JSONObject hello() {
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("hello", "hello");
+        return CommonUtil.successJson(map);
+//        return "hello";
     }
 
     @RequiresPermissions("user:add")
