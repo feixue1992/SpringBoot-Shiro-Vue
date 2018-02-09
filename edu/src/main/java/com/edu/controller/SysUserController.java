@@ -39,7 +39,9 @@ public class SysUserController {
         List<SysUser> sysUserMapperList = sysUserMapper.getUserList("lzh");
         Page<SysUser> sysUserPage = sysUserService.selectPage(page);
         List<SysUser> sysUsers = sysUserService.selectList(null);
-        Page<SysUser> pages = sysUserService.selectPage(page, new EntityWrapper<SysUser>().like("name", "lzh"));
+        Page<SysUser> pages = sysUserService.selectPage(page, new EntityWrapper<SysUser>().like("name", "lzh")
+            .addFilter(" id = {0} and name = {1}", 33333, "lzh2")
+        );
         return CommonUtil.successJson(sysUserPage);
     }
 }
